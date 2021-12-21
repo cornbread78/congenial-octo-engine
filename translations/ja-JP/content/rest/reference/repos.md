@@ -1,5 +1,5 @@
 ---
-title: Repositories
+title: リポジトリ
 intro: 'The Repos API allows to create, manage and control the workflow of public and private {% data variables.product.product_name %} repositories.'
 allowTitleToDifferFromFilename: true
 redirect_from:
@@ -21,6 +21,12 @@ miniTocMaxHeadingLevel: 3
 {% ifversion fpt or ghec or ghes > 3.2 or ghae-issue-4742 %}
 ## Autolinks
 
+{% tip %}
+
+**Note:** The Autolinks API is in beta and may change.
+
+{% endtip %}
+
 To help streamline your workflow, you can use the API to add autolinks to external resources like JIRA issues and Zendesk tickets. For more information, see "[Configuring autolinks to reference external resources](/github/administering-a-repository/configuring-autolinks-to-reference-external-resources)."
 
 {% data variables.product.prodname_github_apps %} require repository administration permissions with read or write access to use the Autolinks API.
@@ -30,46 +36,45 @@ To help streamline your workflow, you can use the API to add autolinks to extern
 {% endfor %}
 {% endif %}
 
-## Branches
+## ブランチ
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'branches' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Collaborators
+## コラボレータ
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'collaborators' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Comments
+## コメント
 
-### Custom media types for commit comments
+### コミットコメントのカスタムメディアタイプ
 
-These are the supported media types for commit comments. You can read more
-about the use of media types in the API [here](/rest/overview/media-types).
+以下がコミットコメントでサポートされているメディアタイプです。 You can read more about the use of media types in the API [here](/rest/overview/media-types).
 
     application/vnd.github-commitcomment.raw+json
     application/vnd.github-commitcomment.text+json
     application/vnd.github-commitcomment.html+json
     application/vnd.github-commitcomment.full+json
 
-For more information, see "[Custom media types](/rest/overview/media-types)."
+詳しい情報については、「[カスタムメディアタイプ](/rest/overview/media-types)」を参照してください。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'comments' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Commits
+## コミット
 
-The Repo Commits API supports listing, viewing, and comparing commits in a repository.
+Repo Commits API は、リポジトリ内の子コミットのリスティング、表示、比較をサポートしています。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'commits' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
 {% ifversion fpt or ghec %}
-## Community
+## コミュニティ
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'community' %}{% include rest_operation %}{% endif %}
@@ -77,56 +82,54 @@ The Repo Commits API supports listing, viewing, and comparing commits in a repos
 
 {% endif %}
 
-## Contents
+## コンテンツ
 
-These API endpoints let you create, modify, and delete Base64 encoded content in a repository. To request the raw format or rendered HTML (when supported), use custom media types for repository contents.
+これらの API エンドポイントを使用すると、リポジトリ内の Base64 でエンコードされたコンテンツを作成、変更、削除できます。 Raw 形式またはレンダリングされた HTML (サポートされている場合) をリクエストするには、リポジトリのコンテンツにカスタムメディアタイプを使用します。
 
-### Custom media types for repository contents
+### リポジトリコンテンツのカスタムメディアタイプ
 
 [READMEs](/rest/reference/repos#get-a-repository-readme), [files](/rest/reference/repos#get-repository-content), and [symlinks](/rest/reference/repos#get-repository-content) support the following custom media types:
 
     application/vnd.github.VERSION.raw
     application/vnd.github.VERSION.html
 
-Use the `.raw` media type to retrieve the contents of the file.
+ファイルのコンテンツを取得するには、`.raw` メディアタイプを使ってください。
 
-For markup files such as Markdown or AsciiDoc, you can retrieve the rendered HTML using the `.html` media type. Markup languages are rendered to HTML using our open-source [Markup library](https://github.com/github/markup).
+Markdown や AsciiDoc などのマークアップファイルでは、`.html` メディアタイプを使用して、レンダリングされた HTML を取得できます。 マークアップ言語は、オープンソースの[マークアップライブラリ](https://github.com/github/markup)を使用して HTML にレンダリングされます。
 
 [All objects](/rest/reference/repos#get-repository-content) support the following custom media type:
 
     application/vnd.github.VERSION.object
 
-Use the `object` media type parameter to retrieve the contents in a consistent object format regardless of the content type. For example, instead of an array of objects
-for a directory, the response will be an object with an `entries` attribute containing the array of objects.
+コンテンツのタイプに関係なく、一貫したオブジェクトフォーマットを取得するには、`object` メディアタイプパラメータを使用します。 たとえば、レスポンスはディレクトリに対するオブジェクトの配列ではなく、オブジェクトの配列を含む `entries` 属性のオブジェクトになります。
 
-You can read more about the use of media types in the API [here](/rest/overview/media-types).
+API でのメディアタイプの使用について詳しくは、[こちら](/rest/overview/media-types)をご覧ください。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'contents' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Deploy keys
+## デプロイキー
 
 {% data reusables.repositories.deploy-keys %}
 
-Deploy keys can either be setup using the following API endpoints, or by using GitHub. To learn how to set deploy keys up in GitHub, see "[Managing deploy keys](/developers/overview/managing-deploy-keys)."
+デプロイキーは、以下の API エンドポイントを使用するか、GitHub を使用することでセットアップできます。 GitHub でデプロイキーを設定する方法については、「[デプロイキーを管理する](/developers/overview/managing-deploy-keys)」を参照してください。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'keys' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Deployments
+## デプロイメント
 
-Deployments are requests to deploy a specific ref (branch, SHA, tag). GitHub dispatches a [`deployment` event](/developers/webhooks-and-events/webhook-events-and-payloads#deployment) that external services can listen for and act on when new deployments are created. Deployments enable developers and organizations to build loosely coupled tooling around deployments, without having to worry about the implementation details of delivering different types of applications (e.g., web, native).
+デプロイメントとは、特定の ref (ブランチ、SHA、タグ) を配備するためるリクエストです。 GitHub は、 外部サーバーがリッスンでき、新しいデプロイメントが作成されたときに実行される [`deployment` イベント](/developers/webhooks-and-events/webhook-events-and-payloads#deployment)をディスバッチします。 デプロイメントにより、開発者や Organization はデプロイメントを中心として、さまざまな種類のアプリケーション (ウェブ、ネイティブなど) を提供するための実装に関する詳細を気にすることなく、疎結合ツールを構築できます。
 
-Deployment statuses allow external services to mark deployments with an `error`, `failure`, `pending`, `in_progress`, `queued`, or `success` state that systems listening to [`deployment_status` events](/developers/webhooks-and-events/webhook-events-and-payloads#deployment_status) can consume.
+デプロイメントのステータスを使用すると、外部サービスがデプロイメントに `error`、`failure`、`pending`、`in_progress`、`queued`、`success` ステータスを付けることができ、[`deployment_status` イベント](/developers/webhooks-and-events/webhook-events-and-payloads#deployment_status)をリッスンするシステムがその情報を使用できます。
 
-Deployment statuses can also include an optional `description` and `log_url`, which are highly recommended because they make deployment statuses more useful. The `log_url` is the full URL to the deployment output, and
-the `description` is a high-level summary of what happened with the deployment.
+デプロイメントのステータスには、オプションとして `description` と `log_url` を含めることもできます。これによりデプロイメントのステータスがより有用なものになるので、非常におすすめです。 `log_url` はデプロイメントの出力の完全な URL で、`description` はデプロイメントで発生したことの概要を示すものです。
 
-GitHub dispatches `deployment` and `deployment_status` events when new deployments and deployment statuses are created. These events allows third-party integrations to receive respond to deployment requests and update the status of a deployment as progress is made.
+GitHub は、新しいデプロイメント、デプロイメントのステータスが作成されたときに、`deployment` イベント、`deployment_status` イベントをディスパッチします。 これらのイベントにより、サードパーティのインテグレーションがデプロイメントのリクエストに対する応答を受けとり、進展があるたびにステータスを更新できます。
 
-Below is a simple sequence diagram for how these interactions would work.
+以下は、これらの相互作用がどのように機能するかを示す簡単なシーケンス図です。
 
 ```
 +---------+             +--------+            +-----------+        +-------------+
@@ -155,25 +158,25 @@ Below is a simple sequence diagram for how these interactions would work.
      |                      |                       |                     |
 ```
 
-Keep in mind that GitHub is never actually accessing your servers. It's up to your third-party integration to interact with deployment events. Multiple systems can listen for deployment events, and it's up to each of those systems to decide whether they're responsible for pushing the code out to your servers, building native code, etc.
+GitHub は、あなたのサーバーに実際にアクセスすることはないということは覚えておきましょう。 デプロイメントイベントとやり取りするかどうかは、サードパーティインテグレーション次第です。 複数のシステムがデプロイメントイベントをリッスンできます。コードをサーバーにプッシュする、ネイティブコードを構築するなどを行うかどうかは、それぞれのシステムが決めることができます。
 
 Note that the `repo_deployment` [OAuth scope](/developers/apps/scopes-for-oauth-apps) grants targeted access to deployments and deployment statuses **without** granting access to repository code, while the {% ifversion not ghae %}`public_repo` and{% endif %}`repo` scopes grant permission to code as well.
 
 
-### Inactive deployments
+### 非アクティブのデプロイメント
 
-When you set the state of a deployment to `success`, then all prior non-transient, non-production environment deployments in the same repository with the same environment name will become `inactive`. To avoid this, you can set `auto_inactive` to `false` when creating the deployment status.
+When you set the state of a deployment to `success`, then all prior non-transient, non-production environment deployments in the same repository with the same environment name will become `inactive`. これを回避するには、デプロイメントのステータスを作成する前に、`auto_inactive` を `false` に設定します。
 
-You can communicate that a transient environment no longer exists by setting its `state` to `inactive`.  Setting the `state` to `inactive` shows the deployment as `destroyed` in {% data variables.product.prodname_dotcom %} and removes access to it.
+`state` を `inactive` に設定することで、一時的な環境が存在しなくなったことを伝えることができます。  `state` を `inactive` に設定すると、{% data variables.product.prodname_dotcom %} でデプロイメントが `destroyed` と表示され、アクセス権が削除されます。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'deployments' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-{% ifversion fpt or ghes > 3.1 or ghae or ghec %}
-## Environments
+{% ifversion fpt or ghes > 3.1 or ghae-next or ghec %}
+## 環境
 
-The Environments API allows you to create, configure, and delete environments. For more information about environments, see "[Using environments for deployment](/actions/deployment/using-environments-for-deployment)." To manage environment secrets, see "[Secrets](/rest/reference/actions#secrets)."
+Environments APIを使うと、環境を作成、設定、削除できます。 For more information about environments, see "[Using environments for deployment](/actions/deployment/using-environments-for-deployment)." 環境のシークレットの管理については「[シークレット](/rest/reference/actions#secrets)」を参照してください。
 
 {% data reusables.gated-features.environments %}
 
@@ -182,23 +185,21 @@ The Environments API allows you to create, configure, and delete environments. F
 {% endfor %}
 {% endif %}
 
-## Forks
+## フォーク
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'forks' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Invitations
+## 招待
 
-The Repository Invitations API allows users or external services to invite other users to collaborate on a repo. The invited users (or external services on behalf of invited users) can choose to accept or decline the invitations.
+Repository Invitations API を使用すると、他のユーザにリポジトリでコラボレーションするようユーザや外部サービスを招待できます。 招待されたユーザ (または招待されたユーザを代行する外部サービス) は、招待を受諾または拒否できます。
 
-Note that the `repo:invite` [OAuth scope](/developers/apps/scopes-for-oauth-apps) grants targeted
-access to invitations **without** also granting access to repository code, while the
-`repo` scope grants permission to code as well as invitations.
+`repo` スコープはコードにも招待にもアクセス権を付与するのに対し、`repo:invite` [OAuth scope](/developers/apps/scopes-for-oauth-apps) は招待のみに絞ってアクセス権を付与し、リポジトリのコードにはアクセス権を付与**しない**ことに注意してください。
 
-### Invite a user to a repository		
+### ユーザをリポジトリに招待する
 
-Use the API endpoint for adding a collaborator. For more information, see "[Add a repository collaborator](/rest/reference/repos#add-a-repository-collaborator)."
+コラボレータを追加するには、API エンドポイントを使用します。 詳しい情報については「[リポジトリコラボレータを追加する](/rest/reference/repos#add-a-repository-collaborator)」を参照してください。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'invitations' %}{% include rest_operation %}{% endif %}
@@ -214,44 +215,42 @@ Use the API endpoint for adding a collaborator. For more information, see "[Add 
 
 {% endif %}
 
-## Merging
+## マージ
 
-The Repo Merging API supports merging branches in a repository. This accomplishes
-essentially the same thing as merging one branch into another in a local repository
-and then pushing to {% data variables.product.product_name %}. The benefit is that the merge is done on the server side and a local repository is not needed. This makes it more appropriate for automation and other tools where maintaining local repositories would be cumbersome and inefficient.
+Repo Merging API は、リポジトリ内にあるブランチのマージをサポートしています。 これは、ローカルリポジトリにおいて 1 つのブランチを別のブランチにマージし、それを {% data variables.product.product_name %} にプッシュするのと本質的には同じことです。 この利点は、マージがサーバー側で行われ、ローカルリポジトリが必要ないことです。 これは自動化や、ローカルリポジトリの保守が煩雑で非効率的なツールに適しています。
 
-The authenticated user will be the author of any merges done through this endpoint.
+認証されたユーザは、このエンドポイントを通じて実行されたあらゆるマージの作者になります。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'merging' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Pages
+## ページ
 
-The {% data variables.product.prodname_pages %} API retrieves information about your {% data variables.product.prodname_pages %} configuration, and the statuses of your builds. Information about the site and the builds can only be accessed by authenticated owners{% ifversion not ghae %}, even if the websites are public{% endif %}. For more information, see "[About {% data variables.product.prodname_pages %}](/pages/getting-started-with-github-pages/about-github-pages)."
+{% data variables.product.prodname_pages %} API は、{% data variables.product.prodname_pages %} の設定や、ビルドのステータスについての情報を取得します。 サイトとビルドに関する情報は、{% ifversion not ghae %}Webサイトがパブリックの場合であっても{% endif %}認証を受けたユーザだけがアクセスできます。 For more information, see "[About {% data variables.product.prodname_pages %}](/pages/getting-started-with-github-pages/about-github-pages)."
 
-In {% data variables.product.prodname_pages %} API endpoints with a `status` key in their response, the value can be one of:
-* `null`: The site has yet to be built.
-* `queued`: The build has been requested but not yet begun.
-* `building`:The build is in progress.
-* `built`: The site has been built.
-* `errored`: Indicates an error occurred during the build.
+レスポンスに `status` キーを持つ {% data variables.product.prodname_pages %} API エンドポイントにおいては、値は以下のいずれかになります。
+* `null`: サイトはまだビルドされていません。
+* `queued`: ビルドがリクエストされたが、まだ開始していません。
+* `building`: ビルドが進行中です。
+* `built`: サイトがビルドされています。
+* `errored`: ビルド中にエラーが発生したことを示します。
 
-In {% data variables.product.prodname_pages %} API endpoints that  return GitHub Pages site information, the JSON responses include these fields:
-* `html_url`: The absolute URL (including scheme) of the rendered Pages site. For example, `https://username.github.io`.
-* `source`: An object that contains the source branch and directory for the rendered Pages site. This includes:
-   - `branch`: The repository branch used to publish your [site's source files](/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site). For example, _main_ or _gh-pages_.
-   - `path`: The repository directory from which the site publishes. Will be either `/` or `/docs`.
+GitHub Pages サイトの情報を返す {% data variables.product.prodname_pages %} API エンドポイントにおいては、JSON のレスポンスには以下が含まれます。
+* `html_url`: レンダリングされた Pages サイトの絶対 URL (スキームを含む) 。 たとえば、`https://username.github.io` などです。
+* `source`: レンダリングされた Pages サイトのソースブランチおよびディレクトリを含むオブジェクト。 これは以下のものが含まれます。
+   - `branch`: [サイトのソースファイル](/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)を公開するために使用するリポジトリのブランチ。 たとえば、_main_ or _gh-pages_ などです。
+   - `path`: サイトの公開元のリポジトリディレクトリ。 `/` または `/docs` のどちらかとなります。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'pages' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Releases
+## リリース
 
 {% note %}
 
-**Note:** The Releases API replaces the Downloads API. You can retrieve the download count and browser download URL from the endpoints in this API that return releases and release assets.
+**注釈:** Releases API は Downloads API を置き換えるものです。 リリースを返し、アセットをリリースする、この API のエンドポイントからダウンロード数と ブラウザのダウンロード URL を取得できます。
 
 {% endnote %}
 
@@ -259,79 +258,61 @@ In {% data variables.product.prodname_pages %} API endpoints that  return GitHub
   {% if operation.subcategory == 'releases' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Statistics
+## 統計
 
-The Repository Statistics API allows you to fetch the data that {% data variables.product.product_name %} uses for visualizing different
-types of repository activity.
+Repository Statistics API を使用すると、{% data variables.product.product_name %} がさまざまなタイプのリポジトリのアクティビティを視覚化するために用いるデータをフェッチできます。
 
-### A word about caching
+### キャッシングについて
 
-Computing repository statistics is an expensive operation, so we try to return cached
-data whenever possible.  If the data hasn't been cached when you query a repository's
-statistics, you'll receive a `202` response; a background job is also fired to
-start compiling these statistics. Give the job a few moments to complete, and
-then submit the request again. If the job has completed, that request will receive a
-`200` response with the statistics in the response body.
+リポジトリの統計情報を計算するのは負荷が高い操作なので、可能な限りキャッシュされたデータを返すようにしています。  リポジトリの統計をクエリした際にデータがキャッシュされていなかった場合は、`202` レスポンスを受け取ります。また、この統計をまとめるため、バックグラウンドでジョブが開始します。 このジョブが完了するまで少し待ってから、リクエストを再度サブミットしてください。 ジョブが完了していた場合、リクエストは `200` レスポンスを受けとり、レスポンスの本文には統計情報が含まれています。
 
-Repository statistics are cached by the SHA of the repository's default branch; pushing to the default branch resets the statistics cache.
+リポジトリの統計情報は、リポジトリのデフォルトブランチに SHA でキャッシュされ、デフォルトのブランチにプッシュすると統計情報のキャッシュがリセットされます。
 
-### Statistics exclude some types of commits
+### 統計で除外されるコミットのタイプ
 
-The statistics exposed by the API match the statistics shown by [different repository graphs](/github/visualizing-repository-data-with-graphs/about-repository-graphs).
+API によって公開される統計は、[別のリポジトリグラフ](/github/visualizing-repository-data-with-graphs/about-repository-graphs)で表示される統計と同じものです。
 
-To summarize:
-- All statistics exclude merge commits.
-- Contributor statistics also exclude empty commits.
+要約すると、
+- すべての統計は、マージコミットが除外されます。
+- コントリビューター統計では、空のコミットも除外されます。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'statistics' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-## Statuses
+## ステータス
 
-The status API allows external services to mark commits with an `error`,
-`failure`, `pending`, or `success` state, which is then reflected in pull requests
-involving those commits.
+ステータス API を使用すると、外部サービスがコミットに `error`、 `failure`、`pending`、`success` ステータスを付けることができ、このステータスはコミットが含まれるプルリクエストに反映されます。
 
-Statuses can also include an optional `description` and `target_url`, and
-we highly recommend providing them as they make statuses much more
-useful in the GitHub UI.
+ステータスには、オプションとして `description` と `target_url` を含めることもできます。これにより GitHub UI でステータスをより有用なものにできるので、非常におすすめです。
 
-As an example, one common use is for continuous integration
-services to mark commits as passing or failing builds using status.  The
-`target_url` would be the full URL to the build output, and the
-`description` would be the high level summary of what happened with the
-build.
+たとえば、継続的インテグレーションサービスの典型的な使用方法の一つが、ステータスを使用してコミットに合格と不合格の印を付けることです。  `target_url` でビルドの出力先の完全な URL、`description` でビルドで発生したことの概要を示すといったようにします。
 
-Statuses can include a `context` to indicate what service is providing that status.
-For example, you may have your continuous integration service push statuses with a context of `ci`, and a security audit tool push statuses with a context of `security`.  You can
-then use the [Get the combined status for a specific reference](/rest/reference/repos#get-the-combined-status-for-a-specific-reference) to retrieve the whole status for a commit.
+ステータスには、どのサービスがそのステータスを提供しているかを示す `context` を含めることができます。 たとえば、継続的インテグレーションサービスのプッシュステータスに `ci` のコンテキストを、セキュリティ監査ツールのプッシュステータスに `security` のコンテキストを含めることができます。  その後、[特定のリファレンス複合的なステータス](/rest/reference/repos#get-the-combined-status-for-a-specific-reference)を使用して、コミットの全体のステータスを取得できます。
 
-Note that the `repo:status` [OAuth scope](/developers/apps/scopes-for-oauth-apps) grants targeted access to statuses **without** also granting access to repository code, while the
-`repo` scope grants permission to code as well as statuses.
+`repo` スコープはコードにもステータスにもアクセス権を付与するのに対し、`repo:status` [OAuth scope](/developers/apps/scopes-for-oauth-apps) はステータスのみに絞ってアクセス権を付与し、リポジトリのコードにはアクセス権を付与**しない**ことに注意してください。
 
-If you are developing a GitHub App and want to provide more detailed information about an external service, you may want to use the [Checks API](/rest/reference/checks).
+GitHub App を開発していて、外部サービスについて詳細な情報を提供したい場合は、[Checks API](/rest/reference/checks) を使用できます。
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'statuses' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
 {% ifversion fpt or ghec %}
-## Traffic
+## トラフィック
 
-For repositories that you have push access to, the traffic API provides access
-to the information provided in your repository graph. For more information, see "<a href="/repositories/viewing-activity-and-data-for-your-repository/viewing-traffic-to-a-repository" class="dotcom-only">Viewing traffic to a repository</a>."
+プッシュアクセスを持つリポジトリに対し、トラフィック API はリポジトリグラフが提供する情報へのアクセスを提供します。 For more information, see "<a href="/repositories/viewing-activity-and-data-for-your-repository/viewing-traffic-to-a-repository" class="dotcom-only">Viewing traffic to a repository</a>."
 
 {% for operation in currentRestOperations %}
   {% if operation.subcategory == 'traffic' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 {% endif %}
 
-## Webhooks
+## webhook
 
 Repository webhooks allow you to receive HTTP `POST` payloads whenever certain events happen in a repository. {% data reusables.webhooks.webhooks-rest-api-links %}
 
-If you would like to set up a single webhook to receive events from all of your organization's repositories, see our API documentation for [Organization Webhooks](/rest/reference/orgs#webhooks).
+Organization のすべてのリポジトリからイベントを受信するため単一の webhook を設定する場合は、[Organization Webhooks](/rest/reference/orgs#webhooks) の API ドキュメントを参照してください。
 
 In addition to the REST API, {% data variables.product.prodname_dotcom %} can also serve as a [PubSubHubbub](#pubsubhubbub) hub for repositories.
 
@@ -339,40 +320,39 @@ In addition to the REST API, {% data variables.product.prodname_dotcom %} can al
   {% if operation.subcategory == 'webhooks' %}{% include rest_operation %}{% endif %}
 {% endfor %}
 
-### Receiving Webhooks
+### webhook の受信
 
-In order for {% data variables.product.product_name %} to send webhook payloads, your server needs to be accessible from the Internet. We also highly suggest using SSL so that we can send encrypted payloads over HTTPS.
+{% data variables.product.product_name %} で webhook ペイロードを送信するには、インターネットからサーバーにアクセスできる必要があります。 暗号化されたペイロードを HTTPS 経由で送信できるように、SSL の使用も強く推奨します。
 
-#### Webhook headers
+#### webhook ヘッダー
 
-{% data variables.product.product_name %} will send along several HTTP headers to differentiate between event types and payload identifiers. See [webhook headers](/developers/webhooks-and-events/webhook-events-and-payloads#delivery-headers) for details.
+{% data variables.product.product_name %} は、イベントタイプとペイロード識別子を区別するために、複数の HTTP ヘッダーも送信します。 See [webhook headers](/developers/webhooks-and-events/webhook-events-and-payloads#delivery-headers) for details.
 
 ### PubSubHubbub
 
-GitHub can also serve as a [PubSubHubbub](https://github.com/pubsubhubbub/PubSubHubbub) hub for all repositories. PSHB is a simple publish/subscribe protocol that lets servers register to receive updates when a topic is updated. The updates are sent with an HTTP POST request to a callback URL.
-Topic URLs for a GitHub repository's pushes are in this format:
+GitHub は、すべてのリポジトリに対する [PubSubHubbub](https://github.com/pubsubhubbub/PubSubHubbub) のハブとして機能することもできます。 PSHB はシンプルな公開/サブスクライブプロトコルで、トピックが更新されたときにサーバーが更新を受信できるよう登録できます。 更新は HTTP POST リクエストでコールバック URL に送信されます。 GitHub リポジトリのプッシュに対するトピック URL のフォーマットは以下の通りです。
 
 `https://github.com/{owner}/{repo}/events/{event}`
 
-The event can be any available webhook event. For more information, see "[Webhook events and payloads](/developers/webhooks-and-events/webhook-events-and-payloads)."
+イベントには、任意の使用可能な webhook イベントを指定します。 詳しい情報については、「[webhook イベントとペイロード](/developers/webhooks-and-events/webhook-events-and-payloads)」を参照してください。
 
-#### Response format
+#### レスポンスのフォーマット
 
-The default format is what [existing post-receive hooks should expect](/post-receive-hooks/): A JSON body sent as the `payload` parameter in a POST.  You can also specify to receive the raw JSON body with either an `Accept` header, or a `.json` extension.
+デフォルトのフォーマットは、[既存の post-receive フックから予想できます](/post-receive-hooks/)。すなわち、POST で `payload` パラメータとして送信される JSON の本文です。  また、`Accept` ヘッダまたは `.json` 拡張子で、Raw 形式の JSON 本文を受信するよう指定できます。
 
     Accept: application/json
     https://github.com/{owner}/{repo}/events/push.json
 
-#### Callback URLs
+#### コールバック URL
 
-Callback URLs can use the `http://` protocol.
+コールバック URL は `http://` プロトコルを使用できます。
 
     # Send updates to postbin.org
     http://postbin.org/123
 
-#### Subscribing
+#### サブスクライブ
 
-The GitHub PubSubHubbub endpoint is: `{% data variables.product.api_url_code %}/hub`. A successful request with curl looks like:
+GitHub PubSubHubbub のエンドポイントは `{% data variables.product.api_url_code %}/hub` です。 curl でリクエストに成功すると、以下のように表示されます。
 
 ``` shell
 curl -u "user" -i \
@@ -382,13 +362,13 @@ curl -u "user" -i \
   -F "hub.callback=http://postbin.org/123"
 ```
 
-PubSubHubbub requests can be sent multiple times. If the hook already exists, it will be modified according to the request.
+PubSubHubbub リクエストは複数回送信できます。 フックがすでに存在する場合は、リクエストに従って変更されます。
 
-##### Parameters
+##### パラメータ
 
-Name | Type | Description
------|------|--------------
-``hub.mode``|`string` | **Required**. Either `subscribe` or `unsubscribe`.
-``hub.topic``|`string` |**Required**.  The URI of the GitHub repository to subscribe to.  The path must be in the format of `/{owner}/{repo}/events/{event}`.
-``hub.callback``|`string` | The URI to receive the updates to the topic.
-``hub.secret``|`string` | A shared secret key that generates a hash signature of the outgoing body content.  You can verify a push came from GitHub by comparing the raw request body with the contents of the {% ifversion fpt or ghes > 2.22 or ghec %}`X-Hub-Signature` or `X-Hub-Signature-256` headers{% elsif ghes < 3.0 %}`X-Hub-Signature` header{% elsif ghae %}`X-Hub-Signature-256` header{% endif %}. You can see [the PubSubHubbub documentation](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify) for more details.
+| 名前             | 種類       | 説明                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hub.mode`     | `string` | **必須**。 `subscribe` または `unsubscribe`。                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `hub.topic`    | `string` | **必須**。  GitHub リポジトリがサブスクライブする URI。  パスのフォーマットは `/{owner}/{repo}/events/{event}` としてください。                                                                                                                                                                                                                                                                                                                                                                      |
+| `hub.callback` | `string` | トピックの更新を受信する URI。                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `hub.secret`   | `string` | 送信する本文コンテンツの ハッシュ署名を生成する共有秘密鍵。  You can verify a push came from GitHub by comparing the raw request body with the contents of the {% ifversion fpt or ghes > 2.22 or ghec %}`X-Hub-Signature` or `X-Hub-Signature-256` headers{% elsif ghes < 3.0 %}`X-Hub-Signature` header{% elsif ghae %}`X-Hub-Signature-256` header{% endif %}. 詳細は、 [PubSubHubbub のドキュメント](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify)を参照してください。 |

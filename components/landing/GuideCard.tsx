@@ -8,7 +8,7 @@ export const GuideCard = ({ guide }: Props) => {
   const authorString = `@${authors.join(', @')}`
 
   return (
-    <li className="col-lg-4 col-12 mb-4 list-style-none">
+    <div className="col-lg-4 col-12 mb-4">
       <a
         className="Box color-shadow-medium height-full d-block hover-shadow-large no-underline color-fg-default p-5"
         href={guide.href}
@@ -50,6 +50,6 @@ export const GuideCard = ({ guide }: Props) => {
           <div>{authorString}</div>
         </footer>
       </a>
-    </li>
+    </div>
   )
 }
