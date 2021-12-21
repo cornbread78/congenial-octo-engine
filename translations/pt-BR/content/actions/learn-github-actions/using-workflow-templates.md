@@ -1,7 +1,7 @@
 ---
-title: Using workflow templates
-shortTitle: Using templates
-intro: '{% data variables.product.product_name %} provides workflow templates for a variety of languages and tooling.'
+title: Usando modelos de fluxo de trabalho
+shortTitle: Usando modelos
+intro: '{% data variables.product.product_name %} fornece modelos de fluxo de trabalho para uma série de linguagens e ferramentas.'
 redirect_from:
   - /articles/setting-up-continuous-integration-using-github-actions
   - /github/automating-your-workflow-with-github-actions/setting-up-continuous-integration-using-github-actions
@@ -22,33 +22,34 @@ topics:
 
 {% data reusables.actions.enterprise-beta %}
 {% data reusables.actions.enterprise-github-hosted-runners %}
+{% data reusables.actions.ae-beta %}
 
-## About workflow templates
+## Sobre os modelos do fluxo de trabalho
 
-{% data variables.product.product_name %} offers workflow templates for a variety of languages and tooling. When you set up workflows in your repository, {% data variables.product.product_name %} analyzes the code in your repository and recommends workflows based on the language and framework in your repository. For example, if you use [Node.js](https://nodejs.org/en/), {% data variables.product.product_name %} will suggest a template file that installs your Node.js packages and runs your tests.
+{% data variables.product.product_name %} oferece modelos de fluxo de trabalho para uma série e linguagens e ferramentas. Ao configurar os fluxos de trabalho no repositório, {% data variables.product.product_name %} analisa o código no seu repositório e recomenda fluxos de trabalho baseados na linguagem e na estrutura do seu repositório. Por exemplo, se você usar o [Node.js](https://nodejs.org/en/), {% data variables.product.product_name %} irá sugerir um arquivo de modelo que instala seus pacotes Node.js e executa seus testes.
 
-You can also create your own workflow templates to share with your organization. For more information, see "[Creating workflow templates](/actions/learn-github-actions/creating-workflow-templates)."
+Você também pode criar seus próprios modelos de fluxo de trabalho para compartilhar com sua organização. Para obter mais informações, consulte "[Criando modelos de fluxo de trabalho](/actions/learn-github-actions/creating-workflow-templates)".
 
-## Using workflow templates
+## Usando modelos de fluxo de trabalho
 
-Anyone with write permission to a repository can set up {% data variables.product.prodname_actions %} workflows for CI/CD or other automation.
+Qualquer pessoa com a permissão de gravação em um repositório pode configurar fluxos de trabalho {% data variables.product.prodname_actions %} para CI/CD ou outra automatização.
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.actions-tab %}
-1. If you already have a workflow in your repository, click **New workflow**.
-1. Find the template that you want to use, then click **Set up this workflow**.
-1. If the workflow template contains comments detailing additional setup steps, follow these steps.
-1. Some workflow templates use secrets. For example, {% raw %}`${{ secrets.npm_token }}`{% endraw %}. If the workflow template uses a secret, store the value described in the secret name as a secret in your repository. For more information, see "[Encrypted secrets](/actions/reference/encrypted-secrets)."
-1. Optionally, make additional changes. For example, you might want to change the value of `on` to change when the workflow runs.
-1. Click **Start commit**.
-1. Write a commit message and decide whether to commit directly to the default branch or to open a pull request.
+1. Se você já tem um fluxo de trabalho no seu repositório, clique em **Novo fluxo de trabalho**.
+1. Encontre o modelo que deseja usar e, em seguida, clique em **Configurar este fluxo de trabalho**.
+1. Se o modelo do fluxo de trabalho contiver comentários que detalham as etapas de instalação adicionais, siga estas etapas.
+1. Alguns modelos de fluxo de trabalho usam segredos. Por exemplo, {% raw %}`${{ secrets.npm_token }}`{% endraw %}. Se o modelo do fluxo de trabalho usar um segredo, armazene o valor descrito no nome do segredo como um segredo no seu repositório. Para obter mais informações, consulte "[Segredos criptografados](/actions/reference/encrypted-secrets)".
+1. Opcionalmente, faça as alterações adicionais. Por exemplo, talvez você queira alterar o valor de `on` para mudar quando o fluxo de trabalho é executado.
+1. Clique em **Start commit** (Iniciar commit).
+1. Escreva uma mensagem de commit e decida se você deseja de fazer o commit diretamente para o branch padrão ou abrir um pull request.
 
-## Further reading
+## Leia mais
 
-- "[About continuous integration](/articles/about-continuous-integration)"
-- "[Managing workflow runs](/actions/managing-workflow-runs)"
-- "[About monitoring and troubleshooting](/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting)"
-- "[Learn {% data variables.product.prodname_actions %}](/actions/learn-github-actions)"
+- [Sobre integração contínua](/articles/about-continuous-integration)
+- "[Gerenciando execuções de fluxo de trabalho](/actions/managing-workflow-runs)"
+- "[Sobre o monitoramento e solução de problemas](/actions/monitoring-and-troubleshooting-workflows/about-monitoring-and-troubleshooting)"
+- "[Aprenda {% data variables.product.prodname_actions %}](/actions/learn-github-actions)"
 {% ifversion fpt or ghec %}
-- "[Managing billing for {% data variables.product.prodname_actions %}](/billing/managing-billing-for-github-actions)"
+- "[Gerenciando cobrança para {% data variables.product.prodname_actions %}](/billing/managing-billing-for-github-actions)"
 {% endif %}

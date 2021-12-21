@@ -1,10 +1,6 @@
 import patterns from '../../lib/patterns.js'
 import { URL } from 'url'
-import languages, { pathLanguagePrefixed } from '../../lib/languages.js'
-import { cacheControlFactory } from '../cache-control.js'
-
-const cacheControl = cacheControlFactory(60 * 60 * 24) // one day
-const noCacheControl = cacheControlFactory(0)
+import languages from '../../lib/languages.js'
 
 export default function handleRedirects(req, res, next) {
   // never redirect assets
@@ -23,11 +19,7 @@ export default function handleRedirects(req, res, next) {
       language = req.context.userLanguage
     }
 
-    // Undo the cookie setting that CSRF sets.
-    res.removeHeader('set-cookie')
-
-    noCacheControl(res)
-
+    res.set('cache-control', 'private, no-store')
     return res.redirect(302, `/${language}`)
   }
 
@@ -71,19 +63,8 @@ export default function handleRedirects(req, res, next) {
     return next()
   }
 
-  // Undo the cookie setting that CSRF sets.
-  res.removeHeader('set-cookie')
-
-  // do the redirect if the from-URL already had a language in it
-  if (pathLanguagePrefixed(req.path)) {
-    cacheControl(res)
-  }
-
-  // If the redirect involved injecting a language prefix, then don't
-  // permanently redirect because that could overly cache in users'
-  // browsers if we some day want to make the language redirect
-  // depend on a cookie or 'Accept-Language' header.
-  return res.redirect(pathLanguagePrefixed(req.path) ? 301 : 302, redirect)
+  // do the redirect!
+  return res.redirect(301, redirect)
 }
 
 function removeQueryParams(redirect) {

@@ -1,6 +1,6 @@
 ---
-title: Migrating to GitHub Actions
-shortTitle: Migrating to GitHub Actions
+title: GitHub Actionsへの移行
+shortTitle: GitHub Actionsへの移行
 intro: 'Learn how to migrate your existing CI/CD workflows to {% data variables.product.prodname_actions %}.'
 versions:
   fpt: '*'
@@ -18,3 +18,4 @@ children:
   - /migrating-from-travis-ci-to-github-actions
 ---
 
+{% data reusables.actions.ae-beta %}
