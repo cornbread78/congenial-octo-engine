@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
+set -e
 
-# [start-readme]
-#
-# Installs/updates all dependencies necessary for the docs environment. Equivalent of `npm install`.
-#
-# [end-readme]
+echo "Starting project bootstrap..."
 
-source script/check-for-node
+# Check if Node.js is installed
+if ! command -v node &> /dev/null; then
+    echo "Error: Node.js is not installed." >&2
+    exit 1
+fi
 
-npm install
+echo "Node.js is installed. Installing dependencies..."
+npm install --legacy-peer-deps
+
+echo "Bootstrap completed successfully!"
+

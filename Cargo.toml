@@ -1,0 +1,31 @@
+[package]
+name = "congenial-octo-engine"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]]
+name = "bitcoin_cold_storage"
+path = "src/bin/bitcoin_cold_storage.rs"
+
+[[bin]]
+name = "bitcoin_deserialize_block"
+path = "src/bin/bitcoin_deserialize_block.rs"
+
+[[bin]]
+name = "bitcoin_utxo_scanner"
+path = "src/bin/bitcoin_utxo_scanner.rs"
+
+[dependencies]
+bitcoin = "0.32"
+hmac = "0.13.0"
+
+sha2 = "0.10"
+
+[[bin]]
+name = "bitcoin_real_utxo_scanner"
+path = "src/bin/bitcoin_real_utxo_scanner.rs"
+
+[[bin]]
+name = "bitcoin_block_scanner"
+path = "src/bin/bitcoin_block_scanner.rs"
